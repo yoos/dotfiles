@@ -1,0 +1,74 @@
+URxvt*termName: rxvt-256color
+
+URxvt*depth: 32
+URxvt*transparent:false
+URxvt*shading:0
+URxvt*foreground: #eeeeee
+URxvt*background: rgba:0000/0000/0000/cccc
+URxvt*cursorColor: #ffffff
+URxvt*cursorBlink: true
+URxvt*borderless: 1
+
+URxvt*xftAntialias: false
+URxvt*font: xft:Dina:pixelsize=10
+URxvt*boldFont: xft:Dina:pixelsize=10
+URxvt*italicFont: xft:Dina:pixelsize=10
+URxvt*bolditalicFont: xft:Dina:pixelsize=10
+
+URxvt*dynamicColors: on
+
+! *color0:     rgb:00/00/00
+! *color1:     rgb:a8/00/00
+! *color2:     rgb:00/a8/00
+! *color3:     rgb:a8/54/00
+! *color4:     rgb:00/00/a8
+! *color5:     rgb:a8/00/a8
+! *color6:     rgb:00/a8/a8
+! *color7:     rgb:a8/a8/a8
+! *color8:     rgb:54/50/54
+! *color9:     rgb:f8/54/50
+! *color10:    rgb:50/fc/50
+! *color11:    rgb:f8/fc/50
+! *color12:    rgb:50/54/f8
+! *color13:    rgb:f8/54/f8
+! *color14:    rgb:50/fc/f8
+! *color15:    rgb:f8/fc/f8
+
+! black, red, green, yellow, blue, purple, cyan, white
+*color0: #000000
+*color1: #bb2233
+*color2: #449933
+*color3: #aa6633
+*color4: #222288
+*color5: #8822aa
+*color6: #3377aa
+*color7: #9999aa
+
+*color8: #333333
+*color9: #ff7766
+*color10: #77ff00
+*color11: #ffee66
+*color12: #8899cc
+*color13: #cc88ee
+*color14: #44eeff
+*color15: #ffffff
+
+URxvt*saveLines:32767
+URxvt*scrollBar:true
+URxvt*secondaryScroll:  true
+URxvt*scrollBar_right:true
+URxvt*scrollstyle:plain
+URxvt*scrollWithBuffer: true
+
+URxvt*geometry: 400x30 
+URxvt*buffered: true
+URxvt*urlLauncher: chromium
+
+URxvt*modifier: alt
+URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
+URxvt.url-select.launcher:  chromium
+URxvt.url-select.underline: true
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+

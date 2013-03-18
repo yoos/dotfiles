@@ -1,0 +1,36 @@
+Config { font = "xft:proggy:size=7:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = Top
+       , lowerOnStart = True
+       , commands = [ Run Weather "KCVO"    ["-t", "<station>: <tempC> C * <rh>% * <skyCondition>", 
+                                             "-l", "lightblue", "-n", "green", "-h", "red", 
+                                             "-L", "16", "-H", "28"] 18000
+                    , Run Wireless "wlan0"  ["-t", "<essid> (<quality>%):"] 10
+                    , Run Network "wlan0"   ["-t", "<rx> / <tx> KB/s", 
+                                             "-l", "green", "-n", "yellow", "-h", "red", 
+                                             "-L", "400", "-H", "1300", 
+                                             "--", 
+                                             "-L", "200", "-H", "700"] 10
+                    , Run MultiCpu          ["-t", "Cpus: <total0>% / <total1>%", 
+                                             "-L", "10",  "-H", "60", 
+                                             "-l", "green", "-n", "yellow", "-h", "red", "-p", "3"] 8
+                    , Run Memory            ["-t", "Mem: <usedratio>%", 
+                                             "-L", "50",  "-H", "80", 
+                                             "-l", "green", "-n", "yellow", "-h", "red"] 10
+                    , Run Swap              ["-L", "10",  "-H", "50", 
+                                             "-l", "green", "-n", "yellow", "-h", "red"] 10
+                    , Run BatteryP          ["BAT0"]
+                                            ["-t", "Batt: <left>% / <timeleft> * AC: <acstatus>", 
+                                             "-L", "25", "-H", "75", 
+                                             "-l", "red", "-n", "yellow", "-h", "green", "-p", "3", 
+                                             "-f", "ADP1/online"] 300
+                    , Run Uptime            [] 100
+                    , Run Com "uname"     ["-s", "-r"] "" 36000
+                    , Run Com "/home/yoos/bin/printvolume.sh" [] "volume" 2
+                    , Run Date "%a %b %_d %Y  |  %H:%M:%S" "date" 10
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%uname%  |  %multicpu%  |  %memory% * %swap%  | %volume% | %wlan0wi% %wlan0%  |  %battery%  |  %uptime% }{ %KCVO%  |  <fc=#ffffff>%date%</fc>"
+       }

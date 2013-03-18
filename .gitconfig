@@ -1,0 +1,13 @@
+[user]
+    name = Soo-Hyun Yoo
+    email = yoos117@gmail.com
+[color]
+    ui = true
+[alias]
+    st = status
+    df = diff
+    co = checkout
+    br = branch
+	ci = commit
+[push]
+	default = simple

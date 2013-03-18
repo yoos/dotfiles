@@ -1,0 +1,55 @@
+background no
+own_window yes
+own_window_transparent yes
+own_window_type desktop
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+
+minimum_size 300 5
+maximum_width 300
+alignment top_right
+gap_x 15
+gap_y 470
+
+use_xft yes
+xftfont DejaVu Sans:size=7
+xftalpha 0.8
+override_utf8_locale no
+text_buffer_size 2048
+
+update_interval 1
+cpu_avg_samples 2
+total_run_times 0
+show_graph_scale no
+show_graph_range no
+
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+default_color cccccc
+color0 4444cc
+color1 666666
+own_window_color 0000ff
+default_shade_color white
+default_outline_color white
+
+
+TEXT
+${color0}eth0$color ${addr eth0} $alignr ${color0}wlan0$color ${addr wlan0}
+$stippled_hr
+${color0}${tcp_portmon 1 32767 count} Inbound $alignr Down:$color ${totaldown wlan0} / ${downspeed wlan0} KB/s
+${downspeedgraph wlan0 222222 999999}
+  ${tcp_portmon 1 32767 rhost 0} ${alignr} ${tcp_portmon 1 32767 lservice 0}
+  ${tcp_portmon 1 32767 rhost 1} ${alignr} ${tcp_portmon 1 32767 lservice 1}
+  ${tcp_portmon 1 32767 rhost 2} ${alignr} ${tcp_portmon 1 32767 lservice 2}
+  ${tcp_portmon 1 32767 rhost 3} ${alignr} ${tcp_portmon 1 32767 lservice 3}
+  ${tcp_portmon 1 32767 rhost 4} ${alignr} ${tcp_portmon 1 32767 lservice 4}
+${color0}${tcp_portmon 32768 61000 count} Outbound $alignr Up:$color ${totalup wlan0} / ${upspeed wlan0} KB/s
+${upspeedgraph wlan0 222222 999999}
+  ${tcp_portmon 32768 61000 rhost 0} ${alignr} ${tcp_portmon 32768 61000 rservice 0}
+  ${tcp_portmon 32768 61000 rhost 1} ${alignr} ${tcp_portmon 32768 61000 rservice 1}
+  ${tcp_portmon 32768 61000 rhost 2} ${alignr} ${tcp_portmon 32768 61000 rservice 2}
+  ${tcp_portmon 32768 61000 rhost 3} ${alignr} ${tcp_portmon 32768 61000 rservice 3}
+  ${tcp_portmon 32768 61000 rhost 4} ${alignr} ${tcp_portmon 32768 61000 rservice 4}

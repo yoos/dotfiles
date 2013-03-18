@@ -1,0 +1,51 @@
+background no
+own_window yes
+own_window_transparent yes
+own_window_type desktop
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+
+minimum_size 300 5
+maximum_width 300
+alignment top_right
+gap_x 15
+gap_y 165
+
+use_xft yes
+xftfont DejaVu Sans:size=7
+xftalpha 0.8
+override_utf8_locale no
+text_buffer_size 2048
+
+update_interval 1
+cpu_avg_samples 2
+total_run_times 0
+show_graph_scale no
+show_graph_range no
+
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+default_color cccccc
+color0 4444cc
+color1 666666
+own_window_color 0000ff
+default_shade_color white
+default_outline_color white
+
+
+TEXT
+${voffset -32}
+${cpugraph cpu0 45,143 222222 999999} $alignr ${cpugraph cpu1 45,143 222222 999999} 
+${voffset -40}
+${color0}Core 0:$color ${cpu cpu0}% ${platform coretemp.0 temp 1} C $alignr ${color0}Core 1:$color ${cpu cpu1}% ${platform coretemp.1 temp 1} C          
+${voffset}
+${color1}${cpubar cpu0 6,143} $alignr ${cpubar cpu1 6,143}$color 
+${color0}Name $alignr PID   CPU%  MEM%$color
+  ${top name 1} $alignr ${top pid 1}   ${top cpu 1}   ${top mem 1}
+  ${top name 2} $alignr ${top pid 2}   ${top cpu 2}   ${top mem 2}
+  ${top name 3} $alignr ${top pid 3}   ${top cpu 3}   ${top mem 3}
+  ${top name 4} $alignr ${top pid 4}   ${top cpu 4}   ${top mem 4}
+  ${top name 5} $alignr ${top pid 5}   ${top cpu 5}   ${top mem 5}
