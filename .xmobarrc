@@ -5,14 +5,14 @@ Config { font = "xft:proggy:size=7:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*
        , lowerOnStart = True
        , commands = [ Run Weather "KCVO"    ["-t", "<station>: <tempC> C * <rh>% * <skyCondition>", 
                                              "-l", "lightblue", "-n", "green", "-h", "red", 
-                                             "-L", "16", "-H", "28"] 18000
+                                             "-L", "16", "-H", "26"] 18000
                     , Run Wireless "wlan0"  ["-t", "<essid> (<quality>%):"] 10
                     , Run Network "wlan0"   ["-t", "<rx> / <tx> KB/s", 
                                              "-l", "green", "-n", "yellow", "-h", "red", 
                                              "-L", "400", "-H", "1300", 
                                              "--", 
                                              "-L", "200", "-H", "700"] 10
-                    , Run MultiCpu          ["-t", "Cpus: <total0>% / <total1>%", 
+                    , Run MultiCpu          ["-t", "Cpus: <total0>% /<total1>% /<total2>% /<total3>% /<total4>% /<total5>% /<total6>% /<total7>%", 
                                              "-L", "10",  "-H", "60", 
                                              "-l", "green", "-n", "yellow", "-h", "red", "-p", "3"] 8
                     , Run Memory            ["-t", "Mem: <usedratio>%", 
@@ -32,5 +32,5 @@ Config { font = "xft:proggy:size=7:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%uname%  |  %multicpu%  |  %memory% * %swap%  | %volume% | %wlan0wi% %wlan0%  |  %battery%  |  %uptime% }{ %KCVO%  |  <fc=#ffffff>%date%</fc>"
+       , template = "%uname%  |  %uptime% }{ %multicpu%  |  %memory% * %swap%  |  %volume%  |  %wlan0wi% %wlan0%  |  %battery%  |  %KCVO%  |  <fc=#ffffff>%date%</fc>"
        }

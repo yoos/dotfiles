@@ -108,7 +108,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_Left), spawn "mpc prev")
     , ((modm, xK_Right), spawn "mpc next")
     , ((modm, xK_k), spawn "setxkbmap us")
-    , ((modm, xK_n), spawn "setxkbmap colemak; xmodmap /home/yoos/.Xmodmap")
+    , ((modm, xK_n), spawn "setxkbmap us -variant colemak; xmodmap /home/yoos/.Xmodmap")
 
     -- Backlight
     --, ((0, 0x1008FF07), spawn "/home/yoos/bin/backlight up")
