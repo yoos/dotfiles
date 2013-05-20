@@ -73,6 +73,9 @@ alias v='vim'
 alias grep='grep --color=auto'
 alias topcpu='ps aux | sort -nrk 3 | head'
 alias z='zathura'
+alias dm='xrandr --output DVI1 --mode'
+alias fehh="feh --auto-zoom --geometry 900x600 -d"   # View images.
+alias -g "backlight"="/bin/bash /usr/bin/asus-screen-brightness"
 
 # Debian
 alias sapt="sudo aptitude"
@@ -127,9 +130,9 @@ export color=   # Fix Yaourt "initcolor: command not found" error
 
 # ROS
 source /opt/ros/desktop-full/setup.zsh
-source /opt/ros/fuerte/setup.zsh   # Put this line after sourcing desktop-full/setup.zsh
+source /opt/ros/groovy/setup.zsh   # Put this line after sourcing desktop-full/setup.zsh
 export ROS_WORKSPACE='/opt/ros/workspace'
-export ROS_PACKAGE_PATH="$ROS_PACKAGE_PATH:$ROS_WORKSPACE:/opt/ros/fuerte:/opt/ros/desktop-full:/home/yoos/devel/atrias:/home/yoos/devel/atrias/software/atrias_controllers:/opt/ros/starmac-ros-pkg:/home/yoos/devel/tricopter:/home/yoos/devel/omnikiwi:/home/yoos/devel/iarc_mission_6"
+export ROS_PACKAGE_PATH="$ROS_PACKAGE_PATH:$ROS_WORKSPACE:/opt/ros/groovy:/opt/ros/desktop-full:/home/yoos/devel/atrias:/home/yoos/devel/atrias/software/atrias_controllers:/opt/ros/starmac-ros-pkg:/home/yoos/devel/tricopter:/home/yoos/devel/omnikiwi:/home/yoos/devel/iarc_mission_6:/home/yoos/devel/school/engr421"
 export ROS_PARALLEL_JOBS=-j3
 
 # Orocos toolchain
