@@ -2,13 +2,13 @@ syntax on
 
 " GNOME's terminal supports 256 colors but doesn't advertise it. Override vim's
 " autodetection.
-if $COLORTERM == 'Terminal'
+if $COLORTERM == 'Terminal' || $COLORTERM == 'xfce4-terminal'
   set t_Co=256
 endif
 
 colorscheme leap
 
-call pathogen#infect()
+"call pathogen#infect()
 
 " Tab settings
 "set expandtab
