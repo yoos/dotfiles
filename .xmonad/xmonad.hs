@@ -86,6 +86,7 @@ myWorkspaces :: [WorkspaceId]
 myWorkspaces = ["one", "two", "three", "four"] ++ map show [5..9 :: Int]
 
 -- Key bindings --
+altMask = mod1Mask   -- Alt key
 myKeys :: XConfig t -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, xK_Return), spawn $ XMonad.terminal conf)
@@ -131,7 +132,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     ++
 
-    [((modm .|. shiftMask, k), (windows $ W.shift i) >> (windows $ W.greedyView i) >> (windows $ W.swapDown))
+    [((modm .|. altMask, k), (windows $ W.shift i) >> (windows $ W.greedyView i) >> (windows $ W.swapDown))
     | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]]
 
 -- Prompt --
