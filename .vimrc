@@ -8,7 +8,7 @@ endif
 
 colorscheme leap
 
-"call pathogen#infect()
+execute pathogen#infect()
 
 " Tab settings
 "set expandtab
