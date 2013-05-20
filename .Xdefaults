@@ -10,10 +10,10 @@ URxvt*cursorBlink: true
 URxvt*borderless: 1
 
 URxvt*xftAntialias: false
-URxvt*font: xft:Dina:pixelsize=10
-URxvt*boldFont: xft:Dina:pixelsize=10
-URxvt*italicFont: xft:Dina:pixelsize=10
-URxvt*bolditalicFont: xft:Dina:pixelsize=10
+URxvt*font: xft:Monospace:pixelsize=12
+URxvt*boldFont: xft:Monospace:pixelsize=12
+URxvt*italicFont: xft:Monospace:pixelsize=12
+URxvt*bolditalicFont: xft:Monospace:pixelsize=12
 
 URxvt*dynamicColors: on
 
