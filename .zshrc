@@ -106,7 +106,7 @@ alias matlabc="matlab -nodesktop -nosplash -nojvm"
 
 # Environment
 setopt hist_ignore_dups
-export BROWSER="chromium"
+export BROWSER="google-chrome"
 export EDITOR="vim"
 export PACMAN="pacmatic"
 export PATH="$PATH:/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/bin:$HOME/scripts:/opt/etherlab/bin:/opt/matlab/bin"
