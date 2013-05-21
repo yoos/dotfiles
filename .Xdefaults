@@ -9,32 +9,15 @@ URxvt*cursorColor: #ffffff
 URxvt*cursorBlink: true
 URxvt*borderless: 1
 
+! Font. Disable antialiasing if using Xft font.
 URxvt*xftAntialias: false
-URxvt*font: xft:Monospace:pixelsize=12
-URxvt*boldFont: xft:Monospace:pixelsize=12
-URxvt*italicFont: xft:Monospace:pixelsize=12
-URxvt*bolditalicFont: xft:Monospace:pixelsize=12
+URxvt*font: xft:Terminus:pixelsize=12
+URxvt*boldFont: xft:Terminus:pixelsize=12
+URxvt*italicFont: xft:Terminus:pixelsize=12
+URxvt*bolditalicFont: xft:Terminus:pixelsize=12
 
+! Colors (black, red, green, yellow, blue, purple, cyan, white)
 URxvt*dynamicColors: on
-
-! *color0:     rgb:00/00/00
-! *color1:     rgb:a8/00/00
-! *color2:     rgb:00/a8/00
-! *color3:     rgb:a8/54/00
-! *color4:     rgb:00/00/a8
-! *color5:     rgb:a8/00/a8
-! *color6:     rgb:00/a8/a8
-! *color7:     rgb:a8/a8/a8
-! *color8:     rgb:54/50/54
-! *color9:     rgb:f8/54/50
-! *color10:    rgb:50/fc/50
-! *color11:    rgb:f8/fc/50
-! *color12:    rgb:50/54/f8
-! *color13:    rgb:f8/54/f8
-! *color14:    rgb:50/fc/f8
-! *color15:    rgb:f8/fc/f8
-
-! black, red, green, yellow, blue, purple, cyan, white
 *color0: #000000
 *color1: #bb2233
 *color2: #449933
@@ -43,7 +26,7 @@ URxvt*dynamicColors: on
 *color5: #8822aa
 *color6: #3377aa
 *color7: #9999aa
-
+! Bright versions of the same
 *color8: #333333
 *color9: #ff7766
 *color10: #77ff00
@@ -53,22 +36,39 @@ URxvt*dynamicColors: on
 *color14: #44eeff
 *color15: #ffffff
 
-URxvt*saveLines:32767
-URxvt*scrollBar:true
+! Scrolling
+URxvt*geometry:         400x30
+URxvt*buffered:         true
+URxvt*saveLines:        32767
+URxvt*scrollBar:        true
 URxvt*secondaryScroll:  true
-URxvt*scrollBar_right:true
-URxvt*scrollstyle:plain
+URxvt*scrollBar_right:  true
+URxvt*scrollstyle:      plain
 URxvt*scrollWithBuffer: true
 
-URxvt*geometry: 400x30 
-URxvt*buffered: true
-URxvt*urlLauncher: chromium
+! Perl extensions
+URxvt*modifier:             alt
+URxvt.perl-ext-common:      default,matcher,tabbed,font-size,clipboard,url-select,keyboard-select
 
-URxvt*modifier: alt
-URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
-URxvt.url-select.launcher:  chromium
+! Enble URL highlighting and clicking (install urxvt-perls)   TODO: I don't
+! think this works yet.
+URxvt.matcher.button:       1
+URxvt.colorUL:              #4682B4
+URxvt.url-select.launcher:  google-chrome
 URxvt.url-select.underline: true
 URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:           perl:keyboard-select:search
+
+! Tabs
+URxvt.tabbed.tabbar-fg: 7
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg:    15
+URxvt.tabbed.tab-bg:    4
+
+! Change font size on-the-fly (install urxvt-font-size-git)
+URxvt.keysym.C-Up:     perl:font-size:increase
+URxvt.keysym.C-Down:   perl:font-size:decrease
+!URxvt.keysym.C-S-Up:   perl:font-size:incglobal
+!URxvt.keysym.C-S-Down: perl:font-size:decglobal
 
