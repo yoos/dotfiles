@@ -45,6 +45,11 @@ PR_RESET="%{${reset_color}%}"
 PS1="$PR_BRIGHT_WHITE%n$PR_RESET$PR_BRIGHT_BLACK@$PR_RESET$PR_GREEN%m$PR_RESET:$PR_MAGENTA%~$PR_RESET $PR_BRIGHT_WHITE%(!.#.>)$PR_RESET "
 RPS1="$PR_BRIGHT_BLACK%D{%m/%d %H:%M}$PR_RESET"
 
+# Am I chrooted?
+if [ $ISCHROOT ]; then
+	PS1=$'\e[1;33m(chroot) \e[0m'$PS1
+fi
+
 #LANGUAGE=
 LC_ALL='en_US.UTF-8'
 LANG='en_US.UTF-8'
