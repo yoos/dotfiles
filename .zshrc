@@ -78,7 +78,7 @@ alias v='vim'
 alias grep='grep --color=auto'
 alias topcpu='ps aux | sort -nrk 3 | head'
 alias z='zathura'
-alias dm='xrandr --output DVI1 --mode'
+alias dm='xrandr --output eDP-0 --mode'
 alias fehh="feh --auto-zoom --geometry 900x600 -d"   # View images.
 alias -g "backlight"="/bin/bash /usr/bin/asus-screen-brightness"
 
