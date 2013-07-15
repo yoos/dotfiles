@@ -124,6 +124,7 @@ export HISTSIZE=32000
 export SAVEHIST=32000
 export HOSTNAME="`hostname`"
 export PAGER='less'
+export MAKEFLAGS=-j10
 export color=   # Fix Yaourt "initcolor: command not found" error
 
 # Deal with "terminal not fully functional" warning when using urxvt
