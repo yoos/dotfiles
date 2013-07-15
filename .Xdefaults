@@ -8,6 +8,7 @@ URxvt*background: rgba:0000/0000/0000/cccc
 URxvt*cursorColor: #ffffff
 URxvt*cursorBlink: true
 URxvt*borderless: 1
+URxvt*urgentOnBell: true
 
 ! Font. Disable antialiasing if using Xft font.
 URxvt*xftAntialias: false
@@ -50,8 +51,7 @@ URxvt*scrollWithBuffer: true
 URxvt*modifier:             alt
 URxvt.perl-ext-common:      default,matcher,tabbed,font-size,clipboard,url-select,keyboard-select
 
-! Enble URL highlighting and clicking (install urxvt-perls)   TODO: I don't
-! think this works yet.
+! Enble URL highlighting and clicking (install urxvt-perls)
 URxvt.matcher.button:       1
 URxvt.colorUL:              #4682B4
 URxvt.url-select.launcher:  google-chrome
