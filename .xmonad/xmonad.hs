@@ -36,11 +36,13 @@ main :: IO ()
 main = myConfig >>= xmonad
 
 myConfig = do
+    xmproc <- spawnPipe "xmobar"
     return defaultConfig
         { terminal           = "urxvtc"
 --      , startupHook        = setWMName "LG3D"
         , manageHook         = myManageHook
         , layoutHook         = myLayouts
+        , logHook            = myLogHook xmproc
         , workspaces         = myWorkspaces
         , keys               = myKeys
         , modMask            = mod4Mask
@@ -81,9 +83,16 @@ myLayouts = smartBorders
                   $ reflectHoriz
                   $ withIM (0.15) (Role "gimp-dock") Full
 
+myLogHook x = dynamicLogWithPP xmobarPP
+                  { ppOutput = hPutStrLn x
+                  , ppTitle  = xmobarColor "white" "" . shorten 60   -- Put first 60 characters of window title in title area.
+                  }
+
+
 -- Workspaces --
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = ["one", "two", "three", "four"] ++ map show [5..9 :: Int]
+--myWorkspaces = ["one", "two", "three", "four"] ++ map show [5..9 :: Int]
+myWorkspaces = map show [1..9 :: Int]
 
 -- Key bindings --
 altMask = mod1Mask   -- Alt key
@@ -114,6 +123,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Backlight
     --, ((0, 0x1008FF07), spawn "/home/yoos/bin/backlight up")
     --, ((0, 0x1008FF08), spawn "/home/yoos/bin/backlight down")
+    , ((0, 0x1008ff06), spawn "sudo asus-kbd-backlight down")
+    , ((0, 0x1008ff05), spawn "sudo asus-kbd-backlight up")
 
     -- Volume
     , ((0, 0x1008FF11), spawn "amixer -q set Master 2-")
