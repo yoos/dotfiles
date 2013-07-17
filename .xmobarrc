@@ -3,27 +3,32 @@ Config { font = "xft:proggy:size=7:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*
        , fgColor = "grey"
        , position = Top
        , lowerOnStart = True
-       , commands = [ Run Weather "KCVO"    ["-t", "<station>: <tempC> C * <rh>% * <skyCondition>", 
-                                             "-l", "lightblue", "-n", "green", "-h", "#ff3333", 
+       , commands = [ Run Weather "KCVO"    ["-t", "<station>: <tempC> C * <rh>% * <skyCondition>",
+                                             "-l", "lightblue", "-n", "green", "-h", "#ff3333",
                                              "-L", "16", "-H", "26"] 6000
-                    , Run Wireless "wlp3s0"  ["-t", "<essid> (<quality>%):"] 10
-                    , Run Network "wlp3s0"   ["-t", "<rx> / <tx> KB/s", 
-                                             "-l", "green", "-n", "yellow", "-h", "#ff3333", 
-                                             "-L", "400", "-H", "1300", 
-                                             "--", 
+                    , Run Wireless "wlp3s0"  ["-t", "<essid> (<quality>%) :"] 10
+                    , Run Network "wlp3s0"   ["-t", "<rx> / <tx> KB/s",
+                                             "-l", "green", "-n", "yellow", "-h", "#ff3333",
+                                             "-L", "400", "-H", "1300",
+                                             "--",
                                              "-L", "200", "-H", "700"] 10
-                    , Run MultiCpu          ["-t", "Cpus (%): <total0> /<total1> /<total2> /<total3> /<total4> /<total5> /<total6> /<total7>", 
-                                             "-L", "10",  "-H", "60", 
+                    , Run Network "enp4s0"   ["-t", "<rx> / <tx> KB/s",
+                                             "-l", "green", "-n", "yellow", "-h", "#ff3333",
+                                             "-L", "400", "-H", "1300",
+                                             "--",
+                                             "-L", "200", "-H", "700"] 10
+                    , Run MultiCpu          ["-t", "Cpus (%): <total0> /<total1> /<total2> /<total3> /<total4> /<total5> /<total6> /<total7>",
+                                             "-L", "10",  "-H", "60",
                                              "-l", "green", "-n", "yellow", "-h", "#ff3333", "-p", "3"] 5
-                    , Run Memory            ["-t", "Mem: <usedratio>%", 
-                                             "-L", "50",  "-H", "80", 
+                    , Run Memory            ["-t", "Mem: <usedratio>%",
+                                             "-L", "50",  "-H", "80",
                                              "-l", "green", "-n", "yellow", "-h", "#ff3333"] 10
-                    , Run Swap              ["-L", "10",  "-H", "50", 
+                    , Run Swap              ["-L", "10",  "-H", "50",
                                              "-l", "green", "-n", "yellow", "-h", "#ff3333"] 10
                     , Run BatteryP          ["BAT0"]
-                                            ["-t", "Batt: <left>% / <timeleft> * AC: <acstatus>", 
-                                             "-L", "25", "-H", "75", 
-                                             "-l", "#ff3333", "-n", "yellow", "-h", "green", "-p", "3", 
+                                            ["-t", "Batt: <left>% / <timeleft> * AC: <acstatus>",
+                                             "-L", "25", "-H", "75",
+                                             "-l", "#ff3333", "-n", "yellow", "-h", "green", "-p", "3",
                                              "-f", "ADP1/online"] 50
                     , Run Uptime            [] 100
                     , Run Com "uname"     ["-s", "-r"] "" 36000
@@ -34,5 +39,5 @@ Config { font = "xft:proggy:size=7:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%uname%  |  %uptime%  |  %iarc_countdown%  |  %StdinReader% }{ %multicpu%  |  %memory% * %swap%  |  %volume%  |  %wlp3s0wi% %wlp3s0%  |  %battery%  |  %KCVO%  |  <fc=#ffffff>%date%</fc>"
+       , template = "%uname%  |  %uptime%  |  %iarc_countdown%  |  %StdinReader% }{ %multicpu%  |  %memory% * %swap%  |  %wlp3s0wi% %wlp3s0% : %enp4s0%  |  %volume%  |  %battery%  |  %KCVO%  |  <fc=#ffffff>%date%</fc>"
        }
