@@ -8,8 +8,6 @@ endif
 
 colorscheme leap
 
-execute pathogen#infect()
-
 " Tab settings
 "set expandtab
 set tabstop=4
@@ -58,10 +56,7 @@ map Y y$
 filetype plugin indent on
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
-set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
-
-" Load functions from ~/.vim/autoload
-autocmd FuncUndefined * exe 'runtime autoload/' . expand('<afile>') . '.vim'
+execute pathogen#infect()
 
 " Arduino syntax
 autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
@@ -70,7 +65,6 @@ autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
 " Mark trailing whitespace
 set list
 set listchars=tab:>-,trail:~,extends:>,precedes:<
-
 
 " Handle long lines.
 "highlight OverLength cterm=underline
