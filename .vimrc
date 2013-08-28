@@ -59,6 +59,16 @@ set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
 execute pathogen#infect()
 
+" Syntastic settings.
+let g:syntastic_check_on_wq = 0   " Don't check syntax on write.
+let g:syntastic_c_check_header = 1
+let g:syntastic_c_no_include_search = 1
+let g:syntastic_c_no_default_include_dirs = 1
+let g:syntastic_cpp_checkers = ['cpplint']
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_no_include_search = 1
+let g:syntastic_cpp_no_default_include_dirs = 1
+
 " Arduino syntax
 autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
 autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
