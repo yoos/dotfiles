@@ -127,14 +127,6 @@ export PAGER='less'
 export MAKEFLAGS=-j10
 export color=   # Fix Yaourt "initcolor: command not found" error
 
-# Deal with "terminal not fully functional" warning when using urxvt
-# case "$TERM" in
-#     rxvt-256color)
-#         TERM=rxvt-unicode
-#         ;;
-# esac
-
-
 # ROS
 source /opt/ros/desktop-full/setup.zsh
 source /opt/ros/groovy/setup.zsh   # Put this line after sourcing desktop-full/setup.zsh
