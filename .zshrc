@@ -1,6 +1,6 @@
 ### Soo-Hyun's .zshrc ###
 
-# Environment
+################################ Environment ##################################
 # setopt NOHUP
 #setopt NOTIFY
 #setopt NO_FLOW_CONTROL
@@ -58,6 +58,37 @@ LC_CTYPE=C
 unsetopt ALL_EXPORT
 
 
+setopt hist_ignore_dups
+export BROWSER="google-chrome"
+export EDITOR="vim"
+export PACMAN="pacmatic"
+export PATH="$PATH:/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/bin:$HOME/scripts:/opt/etherlab/bin:/opt/matlab/bin"
+export C_INCLUDE_PATH=$C_INCLUDE_PATH:"/usr/include:/usr/include/gtk-2.0:/usr/include/gtkextra-2.0:/usr/include/glib-2.0:/usr/lib/glib-2.0/include:/usr/include/cairo:/usr/include/giw:/usr/include/qwt"
+export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH
+export TZ="America/Los_Angeles"
+export HISTFILE=$HOME/.zhistory
+export HISTSIZE=32000
+export SAVEHIST=32000
+export HOSTNAME="`hostname`"
+export PAGER='less'
+export MAKEFLAGS=-j10
+export color=   # Fix Yaourt "initcolor: command not found" error
+
+# ROS
+source /opt/ros/groovy/setup.zsh
+export ROS_WORKSPACE='/opt/ros/workspace'
+export ROS_PACKAGE_PATH="$ROS_PACKAGE_PATH:$ROS_WORKSPACE:/opt/ros/groovy:/home/yoos/devel/atrias:/home/yoos/devel/atrias/software/atrias_controllers"
+export ROS_PARALLEL_JOBS=-j10
+
+# Orocos toolchain
+. `rosstack find orocos_toolchain`/env.sh
+export LUA_PATH=";;;`rosstack find orocos_toolchain`/ocl/lua/modules/?.lua"
+
+# ARM
+export CONFIG_STM32F4_DISCOVERY=1   # For ST libraries
+export CHIBIOS=/home/yoos/devel/ChibiOS
+
+
 #################################### Aliases ##################################
 
 # General commandline
@@ -107,37 +138,6 @@ alias ard="avrdude -c arduino -p m1280"
 
 # MATLAB
 alias matlabc="matlab -nodesktop -nosplash -nojvm"
-
-# Environment
-setopt hist_ignore_dups
-export BROWSER="google-chrome"
-export EDITOR="vim"
-export PACMAN="pacmatic"
-export PATH="$PATH:/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/bin:$HOME/scripts:/opt/etherlab/bin:/opt/matlab/bin"
-export C_INCLUDE_PATH=$C_INCLUDE_PATH:"/usr/include:/usr/include/gtk-2.0:/usr/include/gtkextra-2.0:/usr/include/glib-2.0:/usr/lib/glib-2.0/include:/usr/include/cairo:/usr/include/giw:/usr/include/qwt"
-export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH
-export TZ="America/Los_Angeles"
-export HISTFILE=$HOME/.zhistory
-export HISTSIZE=32000
-export SAVEHIST=32000
-export HOSTNAME="`hostname`"
-export PAGER='less'
-export MAKEFLAGS=-j10
-export color=   # Fix Yaourt "initcolor: command not found" error
-
-# ROS
-source /opt/ros/groovy/setup.zsh
-export ROS_WORKSPACE='/opt/ros/workspace'
-export ROS_PACKAGE_PATH="$ROS_PACKAGE_PATH:$ROS_WORKSPACE:/opt/ros/groovy:/home/yoos/devel/atrias:/home/yoos/devel/atrias/software/atrias_controllers"
-export ROS_PARALLEL_JOBS=-j10
-
-# Orocos toolchain
-. `rosstack find orocos_toolchain`/env.sh
-export LUA_PATH=";;;`rosstack find orocos_toolchain`/ocl/lua/modules/?.lua"
-
-# ARM
-export CONFIG_STM32F4_DISCOVERY=1   # For ST libraries
-export CHIBIOS=/home/yoos/devel/ChibiOS
 
 
 # Initialize
