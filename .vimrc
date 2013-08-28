@@ -51,6 +51,7 @@ set backupdir=~/.vim/backup
 map ,c :w !pdflatex % &
 map ,b :w !bibtex % &
 map ,v :!okular &
+map ,s :SyntasticCheck
 map Y y$
 
 filetype plugin indent on
