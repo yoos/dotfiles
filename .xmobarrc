@@ -6,18 +6,12 @@ Config { font = "xft:proggy:size=7:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*
        , commands = [ Run Weather "KCVO"    ["-t", "<station>: <tempC> C * <rh>% * <skyCondition>",
                                              "-l", "lightblue", "-n", "green", "-h", "#ff3333",
                                              "-L", "16", "-H", "26"] 6000
-                    , Run Wireless "wlp3s0"  ["-t", "<essid> (<quality>%) :"] 10
-                    , Run Network "wlp3s0"   ["-t", "<rx> / <tx> KB/s",
+                    , Run Network "eth0"    ["-t", "<rx> / <tx> KB/s",
                                              "-l", "green", "-n", "yellow", "-h", "#ff3333",
                                              "-L", "400", "-H", "1300",
                                              "--",
                                              "-L", "200", "-H", "700"] 10
-                    , Run Network "enp4s0"   ["-t", "<rx> / <tx> KB/s",
-                                             "-l", "green", "-n", "yellow", "-h", "#ff3333",
-                                             "-L", "400", "-H", "1300",
-                                             "--",
-                                             "-L", "200", "-H", "700"] 10
-                    , Run MultiCpu          ["-t", "Cpus (%): <total0> /<total1> /<total2> /<total3> /<total4> /<total5> /<total6> /<total7>",
+                    , Run MultiCpu          ["-t", "Cpus (%): <total0> /<total1>",
                                              "-L", "10",  "-H", "60",
                                              "-l", "green", "-n", "yellow", "-h", "#ff3333", "-p", "3"] 5
                     , Run Memory            ["-t", "Mem: <usedratio>%",
@@ -33,11 +27,10 @@ Config { font = "xft:proggy:size=7:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*
                     , Run Uptime            [] 100
                     , Run Com "uname"     ["-s", "-r"] "" 36000
                     , Run StdinReader
-                    , Run Com "/home/yoos/bin/printvolume.sh" [] "volume" 2
                     , Run Date "%a %b %_d %Y  |  %H:%M:%S" "date" 2
                     , Run Com "echo $((($(date -d 20140805 +%s) - $(date +%s))/3600/24)) days to competition" [] "iarc_countdown" 36000
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%uname%  |  %uptime%  |  %iarc_countdown%  |  %StdinReader% }{ %multicpu%  |  %memory% * %swap%  |  %wlp3s0wi% %wlp3s0% : %enp4s0%  |  %volume%  |  %battery%  |  %KCVO%  |  <fc=#ffffff>%date%</fc>"
+       , template = "%uname%  |  %uptime%  |  %iarc_countdown%  |  %StdinReader% }{ %multicpu%  |  %memory% * %swap%  |  %eth0%  |  %battery%  |  %KCVO%  |  <fc=#ffffff>%date%</fc>"
        }
