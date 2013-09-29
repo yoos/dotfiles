@@ -69,6 +69,7 @@ let g:syntastic_cpp_checkers = ['cpplint']
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_no_include_search = 1
 let g:syntastic_cpp_no_default_include_dirs = 1
+let g:syntastic_python_checkers = ['flake8']
 
 " Arduino syntax
 autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino

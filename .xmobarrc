@@ -35,7 +35,7 @@ Config { font = "xft:proggy:size=7:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*
                     , Run StdinReader
                     , Run Com "/home/yoos/bin/printvolume.sh" [] "volume" 2
                     , Run Date "%a %b %_d %Y  |  %H:%M:%S" "date" 2
-                    , Run Com "echo $(($(date -d 1-Aug +%j) - $(date +%j))) days to competition" [] "iarc_countdown" 36000
+                    , Run Com "echo $((($(date -d 20140805 +%s) - $(date +%s))/3600/24)) days to competition" [] "iarc_countdown" 36000
                     ]
        , sepChar = "%"
        , alignSep = "}{"
