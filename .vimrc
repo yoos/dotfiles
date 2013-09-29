@@ -35,6 +35,7 @@ set laststatus=2
 set relativenumber   " Number lines relative to the current line.
 set undofile   " Create undo file.
 "highlight clear SignColumn   " Make gutter and background the same color.
+set clipboard=unnamedplus
 
 " Searching and moving
 set ignorecase

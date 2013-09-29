@@ -111,6 +111,7 @@ alias z='zathura'
 alias dm='xrandr --output eDP-0 --mode'
 alias rs='dm 640x480 && dm 1920x1080'   # "Reset" screen to get rid of vertical lines for kernel 3.10.0-1.
 alias fehh="feh --auto-zoom --geometry 900x600 -d"   # View images.
+alias bd=". bd -s"
 
 # Debian
 alias sapt="sudo aptitude"
