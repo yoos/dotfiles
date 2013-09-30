@@ -114,7 +114,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_c), shellPrompt myXPConfig)
     , ((modm, xK_n), appendFilePrompt myXPConfig "/home/yoos/memo.txt")
     , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
-    , ((modm, xK_x), spawn "killall xmobar && xmobar")
     , ((modm, xK_Left), spawn "mpc prev")
     , ((modm, xK_Right), spawn "mpc next")
     , ((modm, xK_k), spawn "setxkbmap us")
