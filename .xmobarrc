@@ -6,6 +6,9 @@ Config { font = "xft:proggy:size=7:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*
        , commands = [ Run Weather "KCVO"    ["-t", "<station>: <tempC> C * <rh>% * <skyCondition>",
                                              "-l", "lightblue", "-n", "green", "-h", "#ff3333",
                                              "-L", "16", "-H", "26"] 6000
+                    , Run Weather "KLAX"    ["-t", "LA: <tempC> C * <rh>% * <skyCondition>",
+                                             "-l", "lightblue", "-n", "green", "-h", "#ff3333",
+                                             "-L", "16", "-H", "26"] 6000
                     , Run Wireless "wlp3s0"  ["-t", "<essid> (<quality>%) :"] 10
                     , Run Network "wlp3s0"   ["-t", "<rx> / <tx> KB/s",
                                              "-l", "green", "-n", "yellow", "-h", "#ff3333",
@@ -34,10 +37,10 @@ Config { font = "xft:proggy:size=7:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*
                     , Run Com "uname"     ["-s", "-r"] "" 36000
                     , Run StdinReader
                     , Run Com "/home/yoos/bin/printvolume.sh" [] "volume" 2
-                    , Run Date "%a %b %_d %Y  |  %H:%M:%S" "date" 2
+                    , Run Date "%a %b %_d %Y  %H:%M:%S" "date" 2
                     , Run Com "echo $((($(date -d 20140805 +%s) - $(date +%s))/3600/24)) days to competition" [] "iarc_countdown" 36000
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%uname%  |  %uptime%  |  %iarc_countdown%  |  %StdinReader% }{ %multicpu%  |  %memory% * %swap%  |  %wlp3s0wi% %wlp3s0% : %enp4s0%  |  %volume%  |  %battery%  |  %KCVO%  |  <fc=#ffffff>%date%</fc>"
+       , template = "%uname%  |  %uptime%  |  %iarc_countdown%  |  %StdinReader% }{ %multicpu%  |  %memory% * %swap%  |  %wlp3s0wi% %wlp3s0% : %enp4s0%  |  %volume%  |  %battery%  |  %KCVO%   |  %KLAX%  |  <fc=#ffffff>%date%</fc>"
        }
