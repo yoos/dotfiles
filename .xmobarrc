@@ -29,7 +29,7 @@ Config { font = "xft:proggy:size=7:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*
                     , Run Swap              ["-L", "10",  "-H", "50",
                                              "-l", "green", "-n", "yellow", "-h", "#ff3333"] 10
                     , Run BatteryP          ["BAT0"]
-                                            ["-t", "Batt: <left>% / <timeleft> * AC: <acstatus>",
+                                            ["-t", "Batt: <left>% * AC: <acstatus>",
                                              "-L", "25", "-H", "75",
                                              "-l", "#ff3333", "-n", "yellow", "-h", "green", "-p", "3",
                                              "-f", "ADP1/online"] 50
