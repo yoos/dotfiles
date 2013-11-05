@@ -9,7 +9,7 @@ endif
 colorscheme leap
 
 " Tab settings
-set expandtab       " Tabs insert spaces
+"set expandtab       " Tabs insert spaces
 set tabstop=4       " Number of spaces inserted at every press of the tab key
 set shiftwidth=4    " Number of spaces inserted per indentation
 set softtabstop=4   " Spaces used for indentation behave like tab characters when tabbing and backspacing
