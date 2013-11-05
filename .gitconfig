@@ -11,3 +11,5 @@
 	ci = commit
 [push]
 	default = simple
+[core]
+	excludesfile = /home/yoos/.gitignore_global
