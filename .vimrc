@@ -14,6 +14,11 @@ set tabstop=4       " Number of spaces inserted at every press of the tab key
 set shiftwidth=4    " Number of spaces inserted per indentation
 set softtabstop=4   " Spaces used for indentation behave like tab characters when tabbing and backspacing
 
+" Indentation rules according to Google's guidelines
+autocmd FileType c,cpp               setlocal noet ts=4 sw=4 sts=4
+autocmd FileType python              setlocal   et ts=4 sw=4 sts=4
+autocmd FileType sh,lisp,html,css,js setlocal   et ts=2 sw=2 sts=2
+
 " Sanity
 set encoding=utf-8
 set scrolloff=3
