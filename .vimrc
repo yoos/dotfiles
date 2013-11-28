@@ -17,13 +17,13 @@ set softtabstop=4   " Spaces used for indentation behave like tab characters whe
 " Indentation rules according to Google's guidelines
 autocmd FileType c,cpp               setlocal noet ts=4 sw=4 sts=4
 autocmd FileType python              setlocal   et ts=4 sw=4 sts=4
-autocmd FileType sh,lisp,html,css,javascript,markdown setlocal   et ts=2 sw=2 sts=2
+autocmd FileType sh,lisp,html,css,javascript,ruby,markdown setlocal et ts=2 sw=2 sts=2
 
 " Arduino syntax
 autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
 autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
 autocmd! BufNewFile,BufRead *.md setlocal ft=markdown
-autocmd! BufNewFile,BufRead *.coffee setlocal ft=javascript
+autocmd! BufNewFile,BufRead *.coffee setlocal ft=ruby
 
 " Sanity
 set encoding=utf-8
