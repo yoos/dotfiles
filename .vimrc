@@ -23,7 +23,7 @@ autocmd FileType sh,lisp,html,css,javascript,perl,markdown setlocal et ts=2 sw=2
 autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
 autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
 autocmd! BufNewFile,BufRead *.md setlocal ft=markdown
-autocmd! BufNewFile,BufRead *.coffee setlocal ft=perl
+autocmd! BufNewFile,BufRead *.coffee setlocal ft=javascript
 
 " Sanity
 set encoding=utf-8
