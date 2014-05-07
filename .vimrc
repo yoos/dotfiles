@@ -17,7 +17,7 @@ set softtabstop=4   " Spaces used for indentation behave like tab characters whe
 " Indentation rules according to Google's or GitHub's guidelines
 autocmd FileType c,cpp               setlocal noet ts=4 sw=4 sts=4
 autocmd FileType python              setlocal   et ts=4 sw=4 sts=4
-autocmd FileType sh,lisp,html,css,javascript,perl,markdown,delphi setlocal et ts=2 sw=2 sts=2
+autocmd FileType sh,lisp,html,css,javascript,perl,markdown,yaml,delphi setlocal et ts=2 sw=2 sts=2
 
 " Filetypes by extension
 autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
