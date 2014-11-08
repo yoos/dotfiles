@@ -37,10 +37,11 @@ Config { font = "xft:proggy:size=7:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*
                     , Run Com "uname"     ["-s", "-r"] "" 36000
                     , Run StdinReader
                     , Run Com "/home/yoos/bin/printvolume.sh" [] "volume" 2
+                    , Run Com "/home/yoos/bin/printbacklight.sh" [] "backlight" 2
                     , Run Date "%a %b %_d %Y  %H:%M:%S" "date" 2
                     , Run Com "/home/yoos/bin/iarc_countdown.sh" [] "iarc_countdown" 36000
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%uname%  |  %uptime%  |  %iarc_countdown%  |  %StdinReader% }{ %multicpu%  |  %memory% * %swap%  |  %wlp3s0wi% %wlp3s0% : %enp4s0%  |  %volume%  |  %battery%  |  %KCVO%   |  %KLAX%  |  <fc=#ffffff>%date%</fc>"
+       , template = "%uname%  |  %uptime%  |  %iarc_countdown%  |  %StdinReader% }{ %multicpu%  |  %memory% * %swap%  |  %wlp3s0wi% %wlp3s0% : %enp4s0%  |  %volume%  |  %backlight%  |  %battery%  |  %KCVO%   |  %KLAX%  |  <fc=#ffffff>%date%</fc>"
        }
