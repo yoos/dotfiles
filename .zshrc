@@ -85,7 +85,7 @@ export ROS_PACKAGE_PATH="$ROS_PACKAGE_PATH:$ROS_WORKSPACE:/opt/ros/hydro:/home/y
 export ROS_PARALLEL_JOBS=-j10
 
 # Orocos toolchain
-. `rosstack find orocos_toolchain`/env.sh
+#. `rosstack find orocos_toolchain`/env.sh
 #export LUA_PATH=";;;`rosstack find orocos_toolchain`/ocl/lua/modules/?.lua"
 
 # Java
