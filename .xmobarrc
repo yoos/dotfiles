@@ -3,45 +3,46 @@ Config { font = "xft:proggy:size=7:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*
        , fgColor = "grey"
        , position = Top
        , lowerOnStart = True
-       , commands = [ Run Weather "KCVO"    ["-t", "<station>: <tempC> C * <rh>% * <skyCondition>",
+       , commands = [ Run Weather "KCVO"    ["-t", "<station>: <tempC> C (<rh>% <skyCondition> <windKnots> knots <windCardinal>)",
                                              "-l", "lightblue", "-n", "green", "-h", "#ff3333",
                                              "-L", "16", "-H", "26"] 6000
-                    , Run Weather "KLAX"    ["-t", "LA: <tempC> C * <rh>% * <skyCondition>",
+                    , Run Weather "KLAX"    ["-t", "LA: <tempC> C (<rh>% <skyCondition>)",
                                              "-l", "lightblue", "-n", "green", "-h", "#ff3333",
                                              "-L", "16", "-H", "26"] 6000
-                    , Run Wireless "wlp3s0"  ["-t", "<essid> (<quality>%) :"] 10
-                    , Run Network "wlp3s0"   ["-t", "<rx> / <tx> KB/s",
+                    , Run Wireless "wlp3s0" ["-t", "<essid> (<quality>%)"] 10
+                    , Run Network "wlp3s0"  ["-t", ": <rx> / <tx> KB/s",
+                                             "-l", "green",
+                                             "-n", "yellow",
+                                             "-h", "#ff3333",
+                                             "-L", "200000", "-H", "700000"] 10
+                    , Run Network "enp4s0"  ["-t", ": <rx> / <tx> KB/s",
                                              "-l", "green", "-n", "yellow", "-h", "#ff3333",
-                                             "-L", "400", "-H", "1300",
-                                             "--",
-                                             "-L", "200", "-H", "700"] 10
-                    , Run Network "enp4s0"   ["-t", "<rx> / <tx> KB/s",
-                                             "-l", "green", "-n", "yellow", "-h", "#ff3333",
-                                             "-L", "400", "-H", "1300",
-                                             "--",
-                                             "-L", "200", "-H", "700"] 10
+                                             "-L", "200000", "-H", "700000"] 10
                     , Run MultiCpu          ["-t", "Cpus (%): <total0> /<total1> /<total2> /<total3> /<total4> /<total5> /<total6> /<total7>",
                                              "-L", "10",  "-H", "60",
                                              "-l", "green", "-n", "yellow", "-h", "#ff3333", "-p", "3"] 5
                     , Run Memory            ["-t", "Mem: <usedratio>%",
                                              "-L", "50",  "-H", "80",
                                              "-l", "green", "-n", "yellow", "-h", "#ff3333"] 10
-                    , Run Swap              ["-L", "10",  "-H", "50",
+                    , Run Swap              ["-t", " (<usedratio>%)",
+                                             "-L", "10",  "-H", "50",
                                              "-l", "green", "-n", "yellow", "-h", "#ff3333"] 10
                     , Run BatteryP          ["BAT0"]
-                                            ["-t", "Batt: <left>% * AC: <acstatus>",
+                                            ["-t", "Batt: <left>% (AC <acstatus>)",
                                              "-L", "25", "-H", "75",
                                              "-l", "#ff3333", "-n", "yellow", "-h", "green", "-p", "3",
-                                             "-f", "ADP1/online"] 50
+                                             "-f", "ADP1/online"] 10
                     , Run Uptime            [] 100
-                    , Run Com "uname"     ["-s", "-r"] "" 36000
+                    , Run Com "uname"       ["-s", "-r"] "" 36000
                     , Run StdinReader
-                    , Run Com "/home/yoos/bin/printvolume.sh" [] "volume" 2
+                    , Run Com "/home/yoos/bin/printvolume.sh"    [] "volume" 2
                     , Run Com "/home/yoos/bin/printbacklight.sh" [] "backlight" 2
                     , Run Date "%a %b %_d %Y  %H:%M:%S" "date" 2
                     , Run Com "/home/yoos/bin/iarc_countdown.sh" [] "iarc_countdown" 36000
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%uname%  |  %uptime%  |  %iarc_countdown%  |  %StdinReader% }{ %multicpu%  |  %memory% * %swap%  |  %wlp3s0wi% %wlp3s0% : %enp4s0%  |  %volume%  |  %backlight%  |  %battery%  |  %KCVO%   |  %KLAX%  |  <fc=#ffffff>%date%</fc>"
+       , template = "%uname%  -  %uptime%  -  %iarc_countdown%  -  %StdinReader% }{ %multicpu%  -  %memory%%swap%  -  %wlp3s0wi%%wlp3s0%%enp4s0%  -  %volume%  -  %backlight%  -  %battery%  -  %KCVO%  -  %KLAX%  -  <fc=#ffffff>%date%</fc>"
        }
+
+-- vim: ft=haskell
