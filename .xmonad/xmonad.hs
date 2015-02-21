@@ -120,6 +120,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_n), spawn "setxkbmap us -variant colemak; xmodmap /home/yoos/.Xmodmap")
 
     -- Backlight
+    , ((0, 0x1008ff06), spawn "sudo /usr/bin/asus-kbd-backlight down")
+    , ((0, 0x1008ff05), spawn "sudo /usr/bin/asus-kbd-backlight up")
     , ((0, 0x1008ff02), spawn "/usr/bin/xbacklight +10")
     , ((0, 0x1008ff03), spawn "/usr/bin/xbacklight -10")
 
