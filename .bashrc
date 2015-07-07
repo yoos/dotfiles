@@ -65,14 +65,3 @@ export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH
 
 
 shopt -s checkwinsize
-fortune
-
-
-# ROS
-export ROS_ROOT=/home/yoos/devel/ros/ros
-export PATH=$ROS_ROOT/bin:$PATH
-export PYTHONPATH=$ROS_ROOT/core/roslib/src:$PYTHONPATH
-if [ ! "$ROS_MASTER_URI" ] ; then export ROS_MASTER_URI=http://localhost:11311 ; fi
-export ROS_PACKAGE_PATH=/home/yoos/devel/ros/stacks:/home/yoos/devel/drlsim:/home/yoos/devel/tricopter
-source $ROS_ROOT/tools/rosbash/rosbash
-export ROS_PARALLEL_JOBS=-j2

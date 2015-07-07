@@ -78,16 +78,6 @@ export PAGER='less'
 export MAKEFLAGS=-j10
 export color=   # Fix Yaourt "initcolor: command not found" error
 
-# ROS
-source /opt/ros/hydro/setup.zsh
-export ROS_WORKSPACE='/opt/ros/workspace' #'/opt/ros/catkin_ws'
-export ROS_PACKAGE_PATH="$ROS_PACKAGE_PATH:$ROS_WORKSPACE:/opt/ros/hydro:/home/yoos/devel/atrias:/home/yoos/devel/atrias/software/atrias_controllers"
-export ROS_PARALLEL_JOBS=-j10
-
-# Orocos toolchain
-#. `rosstack find orocos_toolchain`/env.sh
-#export LUA_PATH=";;;`rosstack find orocos_toolchain`/ocl/lua/modules/?.lua"
-
 # Java
 export _JAVA_AWT_WM_NONREPARENTING=1
 
