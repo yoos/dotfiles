@@ -71,7 +71,7 @@ map Y y$
 filetype plugin indent on
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
-execute pathogen#infect()
+"execute pathogen#infect()
 
 " Syntastic settings.
 let g:syntastic_check_on_wq = 0   " Don't check syntax on write.
