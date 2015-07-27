@@ -15,7 +15,7 @@ set shiftwidth=4    " Number of spaces inserted per indentation
 set softtabstop=4   " Spaces used for indentation behave like tab characters when tabbing and backspacing
 
 " Indentation rules according to Google's or GitHub's guidelines
-autocmd FileType c,cpp               setlocal noet ts=4 sw=4 sts=4
+autocmd FileType c,cpp               setlocal   et ts=2 sw=2 sts=2
 autocmd FileType python              setlocal   et ts=4 sw=4 sts=4
 autocmd FileType sh,lisp,html,css,javascript,perl,markdown,yaml,delphi,tex setlocal et ts=2 sw=2 sts=2
 
@@ -30,7 +30,7 @@ autocmd! BufNewFile,BufRead *.tpp setlocal ft=cpp
 " Sanity
 set encoding=utf-8
 set scrolloff=3
-"set mouse=a   "Enable mouse scrolling
+set mouse=a   "Enable mouse scrolling
 "set autoindent
 set smartindent
 set showmode
@@ -59,6 +59,7 @@ set showmatch
 set hlsearch
 
 
+set updatetime=750
 set backup
 set backupdir=~/.vim/backup
 
@@ -71,7 +72,12 @@ map Y y$
 filetype plugin indent on
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
-"execute pathogen#infect()
+execute pathogen#infect()
+
+" Git and gitgutter
+let g:gitgutter_sign_column_always = 1
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
 
 " Syntastic settings.
 let g:syntastic_check_on_wq = 0   " Don't check syntax on write.
