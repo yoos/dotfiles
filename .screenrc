@@ -1,0 +1,4 @@
+
+autodetach on   # Autodetach session on hangup instead of terminating screen
+startup_message off
+defscrollback 50000
