@@ -101,6 +101,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, xK_Return), spawn $ XMonad.terminal conf)
     , ((modm, xK_Escape), kill)
     , ((modm, xK_space), dwmpromote)
+    , ((modm .|. shiftMask, xK_space), sendMessage NextLayout) -- Rotate through workspace layouts
     , ((modm, xK_a), sendMessage Shrink)
     , ((modm, xK_s), sendMessage Expand)
     , ((modm, xK_r), sendMessage MirrorShrink)
@@ -110,6 +111,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_t), withFocused $ windows . W.sink)
     , ((modm, xK_comma), sendMessage (IncMasterN 1))
     , ((modm, xK_period), sendMessage (IncMasterN (-1)))
+    , ((modm,               xK_Tab), windows W.focusDown)   -- Move focus to next window
+    , ((modm .|. shiftMask, xK_Tab), windows W.focusUp)     -- Move focus to previous window
+    , ((modm,               xK_m),   windows W.focusMaster) -- Move focus to master
     , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess)) -- Exit xmonad
     , ((modm, xK_c), shellPrompt myXPConfig)
     , ((modm, xK_n), appendFilePrompt myXPConfig "/home/yoos/memo.txt")
@@ -137,11 +141,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, 0x1008FF17), spawn "ncmpcpp next") ]
 
     ++
-
+    -- Switch to workspace N with mod-N
     [((modm, k), windows $ W.greedyView i) | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]]
 
     ++
-
+    -- Move window to workspace n with mod-alt-N
     [((modm .|. altMask, k), (windows $ W.shift i) >> (windows $ W.greedyView i) >> (windows $ W.swapDown))
     | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]]
 
