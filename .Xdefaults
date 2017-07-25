@@ -6,16 +6,19 @@ URxvt*shading:0
 URxvt*foreground: #eeeeee
 URxvt*background: rgba:0000/0000/0000/cccc
 URxvt*cursorColor: #ffffff
-URxvt*cursorBlink: true
+URxvt*cursorBlink: false
 URxvt*borderless: 1
 URxvt*urgentOnBell: true
 
-! Font. Disable antialiasing if using Xft font.
+! Font (use xfontsel to ensure correct syntax)
+! Disable antialiasing if using Xft font.
 URxvt*xftAntialias: false
-URxvt*font: xft:Terminus:pixelsize=12
-URxvt*boldFont: xft:Terminus:pixelsize=12
-URxvt*italicFont: xft:Terminus:pixelsize=12
-URxvt*bolditalicFont: xft:Terminus:pixelsize=12
+URxvt*font:           xft:Inconsolata:pixelsize=20
+URxvt*boldFont:       xft:Inconsolata:pixelsize=20:bold
+URxvt*italicFont:     xft:Inconsolata:pixelsize=20:italic
+URxvt*bolditalicFont: xft:Inconsolata:pixelsize=20:bold:italic
+
+Xft.dpi: 184
 
 ! Colors (black, red, green, yellow, blue, purple, cyan, white)
 URxvt*dynamicColors: on
