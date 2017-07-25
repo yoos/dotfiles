@@ -7,6 +7,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.InsertPosition
+import XMonad.Hooks.EwmhDesktops  (fullscreenEventHook)
 
 import XMonad.Actions.CycleWS
 import XMonad.Actions.DwmPromote
@@ -33,22 +34,21 @@ import qualified Data.Map        as M
 import System.Exit
 
 main :: IO ()
-main = myConfig >>= xmonad
-
-myConfig = do
+main = do
     xmproc <- spawnPipe "xmobar"
-    return defaultConfig
+    xmonad $ docks defaultConfig   -- docks for upstream issue xmonad/xmonad#79
         { terminal           = "urxvtc"
---      , startupHook        = setWMName "LG3D"
+        , startupHook        = setWMName "LG3D"   -- Hack for Java
         , manageHook         = myManageHook
         , layoutHook         = myLayouts
         , logHook            = myLogHook xmproc
+        , handleEventHook    = fullscreenEventHook   -- Fix chrome fullscreen
         , workspaces         = myWorkspaces
         , keys               = myKeys
         , modMask            = mod4Mask
-        , borderWidth        = 1
-        , normalBorderColor  = black4
-        , focusedBorderColor = orange }
+        , borderWidth        = 2
+        , normalBorderColor  = black1
+        , focusedBorderColor = yellow }
 
 
 myManageHook = (composeAll $ concat
@@ -56,11 +56,11 @@ myManageHook = (composeAll $ concat
     , [className =? c --> doFloat        | c <- myFloats]
     , [className =? c --> doCenterFloat  | c <- myCFloats]
     , [isFullscreen   --> myDoFullFloat]
-	, [manageDocks]
+    , [manageDocks]
     ])
 
     where
-    
+
         myIgnores = ["desktop", "desktop_window"]
         myFloats  = ["MPlayer", "VirtualBox", "Gimp"]
         myCFloats = ["Save As..."]
@@ -114,35 +114,26 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_Tab), windows W.focusDown)   -- Move focus to next window
     , ((modm .|. shiftMask, xK_Tab), windows W.focusUp)     -- Move focus to previous window
     , ((modm,               xK_m),   windows W.focusMaster) -- Move focus to master
-    , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess)) -- Exit xmonad
+    , ((modm .|. shiftMask .|. altMask, xK_q), io (exitWith ExitSuccess)) -- Exit xmonad
     , ((modm, xK_c), shellPrompt myXPConfig)
-    , ((modm, xK_n), appendFilePrompt myXPConfig "/home/yoos/memo.txt")
+    --, ((modm, xK_n), appendFilePrompt myXPConfig "/home/syoo/memo.txt")
     , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
-    , ((modm, xK_Left), spawn "mpc prev")
-    , ((modm, xK_Right), spawn "mpc next")
     , ((modm, xK_k), spawn "setxkbmap us")
-    , ((modm, xK_n), spawn "setxkbmap us -variant colemak; xmodmap /home/yoos/.Xmodmap")
+    , ((modm, xK_n), spawn "setxkbmap us -variant colemak; xmodmap /home/yoos/.Xmodmap") ]
 
-    -- Backlight
-    , ((0, 0x1008ff06), spawn "sudo /usr/bin/asus-kbd-backlight down")
-    , ((0, 0x1008ff05), spawn "sudo /usr/bin/asus-kbd-backlight up")
-    , ((0, 0x1008ff02), spawn "/usr/bin/xbacklight +10")
-    , ((0, 0x1008ff03), spawn "/usr/bin/xbacklight -10")
-
+    ++
     -- Volume
-    , ((0, 0x1008FF11), spawn "amixer -q set Master 2-")
-    , ((0, 0x1008FF12), spawn "amixer -q set Master toggle")
-    , ((0, 0x1008FF13), spawn "amixer -q set Master 2+")
-
-    -- Music
-    , ((0, 0x1008FF14), spawn "ncmpcpp toggle")
-    , ((0, 0x1008FF15), spawn "ncmpcpp stop")
-    , ((0, 0x1008FF16), spawn "ncmpcpp prev")
-    , ((0, 0x1008FF17), spawn "ncmpcpp next") ]
+    [ ((0, 0x1008FF11), spawn "amixer -q -c 0 set PCM 2-")
+    , ((0, 0x1008FF12), spawn "amixer -q -c 0 set PCM toggle")
+    , ((0, 0x1008FF13), spawn "amixer -q -c 0 set PCM 2+") ]
 
     ++
     -- Switch to workspace N with mod-N
-    [((modm, k), windows $ W.greedyView i) | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]]
+    [((modm, k), windows $ W.view i) | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]]
+
+    ++
+    -- "Load" workspace N with mod-shift-N
+    [((modm .|. shiftMask, k), windows $ W.greedyView i) | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]]
 
     ++
     -- Move window to workspace n with mod-alt-N
@@ -156,13 +147,15 @@ myXPConfig = defaultXPConfig
     , bgColor       = black
     , fgColor       = white
     , bgHLight      = black1
-    , fgHLight      = orange
+    , fgHLight      = yellow
     , borderColor   = black
     , position      = Top
-    , height        = 16 }
+    , height        = 32 }
 
 -- Colors --
+green  = "#33ff33"
 orange = "#ebac54"
+yellow = "#ffff33"
 white  = "#ffffff"
 black  = "#000000"
 black1 = "#1f1f1f"
@@ -175,5 +168,5 @@ grey2  = "#7f7f7f"
 
 
 -- Definitions --
-myFont = "-*-proggycleanszcp-medium-r-normal-*-13-80-96-96-c-70-iso8859-1"
+myFont = "-*-terminus-*-*-*-*-24-*-*-*-*-*-*-*"
 goldenRatio = toRational $ 2/(1 + sqrt 5 :: Double)
