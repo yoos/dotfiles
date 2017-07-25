@@ -1,6 +1,73 @@
-### Soo-Hyun's .zshrc ###
+### syoo.zshrc - 2016.12.13 ###
+
+#################################### Aliases ##################################
+# General commandline
+alias ls="ls --color=auto --group-directories-first"
+alias l="ls "
+alias ll="ls -lh"
+alias la="ls -a"
+alias dfh="df -h"
+alias d="dmesg"
+alias s="sensors"
+alias v="vim"
+alias y="yaourt"
+alias sv="sudo vim"
+alias grep="grep --color=auto"
+alias topcpu="ps aux | sort -nrk 3 | head"
+alias fehh="feh --auto-zoom --geometry 900x600 -d"   # View images
+alias bd=". bd -s"
+
+# Git
+alias gb="git branch"
+alias gc="git commit"
+alias gd="git diff"
+alias gl="git log"
+alias gp="git pull"
+alias gs="git status"
+alias gco="git checkout"
+alias gsm="git submodule"
+
+# Aptitude
+alias sapt="sudo aptitude"
+alias sapts="sudo aptitude search"
+alias sapti="sudo aptitude install"
+alias saptu="sudo aptitude update"
+alias saptc="sudo aptitude clean"
+alias saptr="sudo aptitude remove"
+alias saptg="sudo aptitude upgrade"
+
+################################### Prompt ####################################
+autoload colors zsh/terminfo
+if [[ "$terminfo[colors]" -ge 8 ]]; then
+    colors
+fi
+for color in BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+    eval PR_$color='%{$fg[${(L)color}]%}'
+    eval PR_BRIGHT_$color='%{$fg_bold[${(L)color}]%}'
+    (( count = $count + 1 ))
+done
+PR_RESET="%{${reset_color}%}"
+
+PS1="$PR_BRIGHT_WHITE%n$PR_RESET$PR_WHITE@$PR_RESET$PR_BRIGHT_YELLOW%m$PR_RESET:$PR_CYAN%~$PR_RESET $PR_BRIGHT_WHITE%(!.#.>)$PR_RESET "
+RPS1="$PR_BRIGHT_BLACK%D{%m/%d %H:%M}$PR_RESET"
+
+# Am I chrooted?
+if [ $ISCHROOT ]; then
+    PS1=$'\e[1;33m(chroot)\e[0m'$PS1
+fi
 
 ################################ Environment ##################################
+export BROWSER="google-chrome"
+export EDITOR="vim"
+export PACMAN="pacmatic"
+export GOPATH=/home/syoo/devel/go
+export HOSTNAME="`hostname`"
+export MAKEFLAGS=-j10
+export PAGER='less'
+export PATH=$GOPATH/bin:$HOME/bin:$PATH
+export TZ="America/Los_Angeles"
+
+############################## Zsh Environment ################################
 # setopt NOHUP
 #setopt NOTIFY
 #setopt NO_FLOW_CONTROL
@@ -29,27 +96,6 @@ zmodload -a zsh/stat stat
 zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
 
-
-# Customize prompt
-autoload colors zsh/terminfo
-if [[ "$terminfo[colors]" -ge 8 ]]; then
-    colors
-fi
-for color in BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-    eval PR_$color='%{$fg[${(L)color}]%}'
-    eval PR_BRIGHT_$color='%{$fg_bold[${(L)color}]%}'
-    (( count = $count + 1 ))
-done
-PR_RESET="%{${reset_color}%}"
-
-PS1="$PR_BRIGHT_WHITE%n$PR_RESET$PR_WHITE@$PR_RESET$PR_GREEN%m$PR_RESET:$PR_MAGENTA%~$PR_RESET $PR_BRIGHT_WHITE%(!.#.>)$PR_RESET "
-RPS1="$PR_BRIGHT_BLACK%D{%m/%d %H:%M}$PR_RESET"
-
-# Am I chrooted?
-if [ $ISCHROOT ]; then
-	PS1=$'\e[1;33m(chroot)\e[0m'$PS1
-fi
-
 #LANGUAGE=
 LC_ALL='en_US.UTF-8'
 LANG='en_US.UTF-8'
@@ -57,86 +103,13 @@ LC_CTYPE=C
 
 unsetopt ALL_EXPORT
 
-
+# Command history
 setopt hist_ignore_dups
-export BROWSER="google-chrome"
-export EDITOR="vim"
-export PACMAN="pacmatic"
-PATH="$PATH:$HOME/bin:$HOME/scripts:/opt/etherlab/bin:/opt/matlab/bin:$HOME/.gem/ruby/2.1.0/bin"
-export PYTHONPATH="/home/yoos/devel/matrix:/home/yoos/devel/mavlink:$PYTHONPATH"
-#export C_INCLUDE_PATH=$C_INCLUDE_PATH:"/usr/avr/include"
-#export C_INCLUDE_PATH="/usr/avr/include:/opt/cuda/include:/usr/include:/usr/include/gtk-2.0:/usr/include/gtkextra-2.0:/usr/include/glib-2.0:/usr/lib/glib-2.0/include:/usr/include/cairo:/usr/include/giw:/usr/include/qwt"
-#export C_INCLUDE_PATH="/usr/avr/include:/opt/cuda/include"
-#export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/cuda/lib:/opt/OGRE-1.8/lib
-export TZ="America/Los_Angeles"
 export HISTFILE=$HOME/.zhistory
 export HISTSIZE=32000
 export SAVEHIST=32000
-export HOSTNAME="`hostname`"
-export PAGER='less'
-export MAKEFLAGS=-j10
-export color=   # Fix Yaourt "initcolor: command not found" error
 
-# Java
-export _JAVA_AWT_WM_NONREPARENTING=1
-
-
-#################################### Aliases ##################################
-
-# General commandline
-alias ls='ls --color=auto --group-directories-first'
-alias l='ls '
-alias ll='ls -lh'
-alias la='ls -a'
-alias dfh='df -h'
-alias sus='systemctl suspend'
-alias so='xset dpms force off'
-alias d='dmesg'
-alias s='sensors'
-alias y='yaourt'
-alias svim='sudo vim'
-alias m='ncmpcpp'
-alias v='vagrant'
-alias grep='grep --color=auto'
-alias topcpu='ps aux | sort -nrk 3 | head'
-alias z='zathura'
-alias dm='xrandr --output eDP-0 --mode'
-alias rs='dm 640x480 && dm 1920x1080'   # "Reset" screen to get rid of vertical lines for kernel 3.10.0-1.
-alias fehh="feh --auto-zoom --geometry 900x600 -d"   # View images.
-alias bd=". bd -s"
-alias e="emacsclient"
-alias rd='source /opt/ros/catkin_ws/devel/setup.zsh'
-
-# Debian
-alias sapt="sudo aptitude"
-alias sapts="sudo aptitude search"
-alias sapti="sudo aptitude install"
-alias saptu="sudo aptitude update"
-alias saptc="sudo aptitude clean"
-alias saptr="sudo aptitude remove"
-alias saptg="sudo aptitude upgrade"
-
-# SSH
-alias keyon="ssh-add -t 10800"
-alias keyoff="ssh-add -D"
-alias keylist="ssh-add -l"
-alias sshosu='ssh -t osu "screen -dR"'
-alias sshengr='ssh -t engr "screen -dR"'
-alias sshic='ssh -t ic "screen -dR"'
-alias sshcvr='ssh -t cvr "screen -dR"'
-
-# Tor
-alias torbrowse='google-chrome-stable --proxy-server="https=127.0.0.1:9050;socks=127.0.0.1:9050;sock4=127.0.0.1:9050;sock5=127.0.0.1:9050,ftp=127.0.0.1:9050" --incognito check.torproject.org'
-
-# Arduino
-alias ard="avrdude -c arduino -p m1280"
-
-# MATLAB
-alias matlabc="matlab -nodesktop -nosplash"
-
-
-# Initialize
+################################## Initialize #################################
 autoload -U compinit
 compinit
 bindkey "[3~" delete-char
@@ -222,3 +195,9 @@ zstyle ':completion:*:ssh:*' group-order \
    hosts-domain hosts-host users hosts-ipaddr
 zstyle '*' single-ignored show
 
+# Reverse search
+bindkey -v
+bindkey '' history-incremental-search-backward
+
+# Autostart X server on tty1 login
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx
