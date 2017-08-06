@@ -168,5 +168,5 @@ grey2  = "#7f7f7f"
 
 
 -- Definitions --
-myFont = "-*-terminus-*-*-*-*-24-*-*-*-*-*-*-*"
+myFont = "xft:Inconsolata:size=12:antialias=true"
 goldenRatio = toRational $ 2/(1 + sqrt 5 :: Double)
