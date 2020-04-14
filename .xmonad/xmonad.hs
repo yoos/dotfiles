@@ -118,7 +118,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_c), shellPrompt myXPConfig)
     --, ((modm, xK_n), appendFilePrompt myXPConfig "/home/syoo/memo.txt")
     , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
-    , ((modm, xK_k), spawn "setxkbmap us")
+    , ((modm, xK_k), spawn "setxkbmap us -option caps:backspace")
     , ((modm, xK_n), spawn "setxkbmap us -variant colemak; xmodmap /home/yoos/.Xmodmap") ]
 
     ++
