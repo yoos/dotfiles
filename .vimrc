@@ -45,6 +45,7 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
+set number
 set relativenumber   " Number lines relative to the current line.
 set undofile   " Create undo file.
 "highlight clear SignColumn   " Make gutter and background the same color.
