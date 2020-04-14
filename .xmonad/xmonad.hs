@@ -62,7 +62,7 @@ myManageHook = (composeAll $ concat
     where
 
         myIgnores = ["desktop", "desktop_window"]
-        myFloats  = ["MPlayer", "VirtualBox", "Gimp"]
+        myFloats  = ["MPlayer", "VirtualBox", "Gimp", "rdesktop"]
         myCFloats = ["Save As..."]
 
         myDoFullFloat :: ManageHook
