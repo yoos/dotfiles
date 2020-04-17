@@ -6,7 +6,7 @@ URxvt*shading:0
 URxvt*foreground: #eeeeee
 URxvt*background: rgba:0000/0000/0000/eeee
 URxvt*cursorColor: #ffffff
-URxvt*cursorBlink: false
+URxvt*cursorBlink: true
 URxvt*borderless: 1
 URxvt*urgentOnBell: true
 
