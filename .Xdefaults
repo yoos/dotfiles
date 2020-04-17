@@ -4,7 +4,7 @@ URxvt*depth: 32
 URxvt*transparent:false
 URxvt*shading:0
 URxvt*foreground: #eeeeee
-URxvt*background: rgba:0000/0000/0000/cccc
+URxvt*background: rgba:0000/0000/0000/eeee
 URxvt*cursorColor: #ffffff
 URxvt*cursorBlink: false
 URxvt*borderless: 1
