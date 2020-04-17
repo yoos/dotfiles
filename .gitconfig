@@ -8,8 +8,8 @@
     df = diff
     co = checkout
     br = branch
-	ci = commit
+    ci = commit
 [push]
-	default = simple
+    default = simple
 [core]
-	excludesfile = /home/yoos/.gitignore_global
+    excludesfile = /home/syoo/.gitignore_global
