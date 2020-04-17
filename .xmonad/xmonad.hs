@@ -123,9 +123,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     ++
     -- Volume
-    [ ((0, 0x1008FF11), spawn "amixer -q -c 0 set PCM 2-")
-    , ((0, 0x1008FF12), spawn "amixer -q -c 0 set PCM toggle")
-    , ((0, 0x1008FF13), spawn "amixer -q -c 0 set PCM 2+") ]
+    [ ((0, 0x1008FF11), spawn "amixer -q -c 0 set Master 2-")
+    , ((0, 0x1008FF12), spawn "amixer -q -c 0 set Master toggle")
+    , ((0, 0x1008FF13), spawn "amixer -q -c 0 set Master 2+") ]
 
     ++
     -- Switch to workspace N with mod-N
