@@ -1,4 +1,4 @@
-syntax on
+""" syoo.vimrc - 2017.01.03
 
 " GNOME's terminal supports 256 colors but doesn't advertise it. Override vim's
 " autodetection.
@@ -6,6 +6,7 @@ if $COLORTERM == 'Terminal' || $COLORTERM == 'xfce4-terminal'
   set t_Co=256
 endif
 
+syntax on
 colorscheme leap
 
 " Tab settings
@@ -15,17 +16,17 @@ set shiftwidth=4    " Number of spaces inserted per indentation
 set softtabstop=4   " Spaces used for indentation behave like tab characters when tabbing and backspacing
 
 " Indentation rules according to Google's or GitHub's guidelines
-autocmd FileType c,cpp               setlocal   et ts=2 sw=2 sts=2
+autocmd FileType c,cpp               setlocal   et ts=4 sw=4 sts=4
 autocmd FileType python              setlocal   et ts=4 sw=4 sts=4
 autocmd FileType sh,lisp,html,css,javascript,perl,markdown,yaml,delphi,tex setlocal et ts=2 sw=2 sts=2
 
 " Filetypes by extension
-autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
-autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
 autocmd! BufNewFile,BufRead *.md setlocal ft=markdown
 autocmd! BufNewFile,BufRead *.coffee setlocal ft=javascript
 autocmd! BufNewFile,BufRead *.pas setlocal ft=delphi
 autocmd! BufNewFile,BufRead *.tpp setlocal ft=cpp
+autocmd! BufNewFile,BufRead *.frag setlocal ft=cpp
+autocmd! BufNewFile,BufRead *.vert setlocal ft=cpp
 
 " Sanity
 set encoding=utf-8
@@ -115,9 +116,3 @@ nnoremap ; :
 
 " Leader stuff
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
-
-
-:ab #b /*****************************************************************************
-:ab #e *****************************************************************************/
-
-
