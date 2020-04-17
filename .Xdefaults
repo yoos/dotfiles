@@ -48,7 +48,15 @@ URxvt*scrollBar:        true
 URxvt*secondaryScroll:  true
 URxvt*scrollBar_right:  true
 URxvt*scrollstyle:      plain
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
 URxvt*scrollWithBuffer: true
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+! disable the scrollback buffer for the secondary screen (e.g., in less)
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
 
 ! Perl extensions
 URxvt*modifier:             alt
