@@ -13,12 +13,12 @@ URxvt*urgentOnBell: true
 ! Font (use xfontsel to ensure correct syntax)
 ! Disable antialiasing if using Xft font.
 URxvt*xftAntialias:   true
-URxvt*font:           xft:Inconsolata:size=10
-URxvt*boldFont:       xft:Inconsolata:size=10:bold
-URxvt*italicFont:     xft:Inconsolata:size=10:italic
-URxvt*bolditalicFont: xft:Inconsolata:size=10:bold:italic
+URxvt*font:           xft:Inconsolata:size=12
+URxvt*boldFont:       xft:Inconsolata:size=12:bold
+URxvt*italicFont:     xft:Inconsolata:size=12:italic
+URxvt*bolditalicFont: xft:Inconsolata:size=12:bold:italic
 
-Xft.dpi: 184
+Xft.dpi: 96
 
 ! Colors (black, red, green, yellow, blue, purple, cyan, white)
 URxvt*dynamicColors: on
