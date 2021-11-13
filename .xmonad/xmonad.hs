@@ -37,7 +37,7 @@ main :: IO ()
 main = do
     xmproc <- spawnPipe "xmobar"
     xmonad $ docks defaultConfig   -- docks for upstream issue xmonad/xmonad#79
-        { terminal           = "urxvtc"
+        { terminal           = "urxvt"
         , startupHook        = setWMName "LG3D"   -- Hack for Java
         , manageHook         = myManageHook
         , layoutHook         = myLayouts
