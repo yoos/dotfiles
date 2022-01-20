@@ -10,6 +10,7 @@ import XMonad.Hooks.InsertPosition
 
 import XMonad.Actions.CycleWS
 import XMonad.Actions.DwmPromote
+import XMonad.Actions.SwapWorkspaces
 
 import XMonad.Layout.NoBorders
 import XMonad.Layout.IM
@@ -38,7 +39,7 @@ main = myConfig >>= xmonad
 myConfig = do
     xmproc <- spawnPipe "xmobar"
     return defaultConfig
-        { terminal           = "urxvtc"
+        { terminal           = "urxvt"
 --      , startupHook        = setWMName "LG3D"
         , manageHook         = myManageHook
         , layoutHook         = myLayouts
@@ -46,9 +47,9 @@ myConfig = do
         , workspaces         = myWorkspaces
         , keys               = myKeys
         , modMask            = mod4Mask
-        , borderWidth        = 1
-        , normalBorderColor  = black4
-        , focusedBorderColor = orange }
+        , borderWidth        = 2
+        , normalBorderColor  = black1
+        , focusedBorderColor = yellow }
 
 
 myManageHook = (composeAll $ concat
@@ -56,13 +57,13 @@ myManageHook = (composeAll $ concat
     , [className =? c --> doFloat        | c <- myFloats]
     , [className =? c --> doCenterFloat  | c <- myCFloats]
     , [isFullscreen   --> myDoFullFloat]
-	, [manageDocks]
+    , [manageDocks]
     ])
 
     where
-    
+
         myIgnores = ["desktop", "desktop_window"]
-        myFloats  = ["MPlayer", "VirtualBox", "Gimp"]
+        myFloats  = ["MPlayer", "VirtualBox", "Gimp", "rdesktop"]
         myCFloats = ["Save As..."]
 
         myDoFullFloat :: ManageHook
@@ -114,7 +115,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_Tab), windows W.focusDown)   -- Move focus to next window
     , ((modm .|. shiftMask, xK_Tab), windows W.focusUp)     -- Move focus to previous window
     , ((modm,               xK_m),   windows W.focusMaster) -- Move focus to master
-    , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess)) -- Exit xmonad
+    , ((modm .|. shiftMask .|. altMask, xK_q), io (exitWith ExitSuccess)) -- Exit xmonad
     , ((modm, xK_c), shellPrompt myXPConfig)
     , ((modm, xK_n), appendFilePrompt myXPConfig "/home/yoos/memo.txt")
     , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
@@ -130,24 +131,27 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, 0x1008ff03), spawn "/usr/bin/xbacklight -10")
 
     -- Volume
-    , ((0, 0x1008FF11), spawn "amixer -q set Master 2-")
-    , ((0, 0x1008FF12), spawn "amixer -q set Master toggle")
-    , ((0, 0x1008FF13), spawn "amixer -q set Master 2+")
-
-    -- Music
-    , ((0, 0x1008FF14), spawn "ncmpcpp toggle")
-    , ((0, 0x1008FF15), spawn "ncmpcpp stop")
-    , ((0, 0x1008FF16), spawn "ncmpcpp prev")
-    , ((0, 0x1008FF17), spawn "ncmpcpp next") ]
+    , ((0, 0x1008FF11), spawn "amixer -q -c 0 set Master 2-")
+    , ((0, 0x1008FF12), spawn "amixer -q -c 0 set Master toggle")
+    , ((0, 0x1008FF13), spawn "amixer -q -c 0 set Master 2+") ]
 
     ++
     -- Switch to workspace N with mod-N
-    [((modm, k), windows $ W.greedyView i) | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]]
+    [((modm, k), windows $ W.view i) | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]]
+
+    ++
+    -- "Load" workspace N with mod-shift-N
+    [((modm .|. shiftMask, k), windows $ W.greedyView i) | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]]
 
     ++
     -- Move window to workspace n with mod-alt-N
     [((modm .|. altMask, k), (windows $ W.shift i) >> (windows $ W.greedyView i) >> (windows $ W.swapDown))
     | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]]
+
+    ++
+    -- Swap the current workspace into another
+    [((modm .|. controlMask, k), windows $ swapWithCurrent i) | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]]
+
 
 -- Prompt --
 myXPConfig :: XPConfig
@@ -156,13 +160,15 @@ myXPConfig = defaultXPConfig
     , bgColor       = black
     , fgColor       = white
     , bgHLight      = black1
-    , fgHLight      = orange
+    , fgHLight      = yellow
     , borderColor   = black
     , position      = Top
     , height        = 16 }
 
 -- Colors --
+green  = "#33ff33"
 orange = "#ebac54"
+yellow = "#ffff33"
 white  = "#ffffff"
 black  = "#000000"
 black1 = "#1f1f1f"

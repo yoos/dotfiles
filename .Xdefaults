@@ -4,9 +4,9 @@ URxvt*depth: 32
 URxvt*transparent:false
 URxvt*shading:0
 URxvt*foreground: #eeeeee
-URxvt*background: rgba:0000/0000/0000/cccc
+URxvt*background: rgba:0000/0000/0000/eeee
 URxvt*cursorColor: #ffffff
-URxvt*cursorBlink: true
+URxvt*cursorBlink: false
 URxvt*borderless: 1
 URxvt*urgentOnBell: true
 
@@ -16,6 +16,8 @@ URxvt*font: xft:Terminus:pixelsize=12
 URxvt*boldFont: xft:Terminus:pixelsize=12
 URxvt*italicFont: xft:Terminus:pixelsize=12
 URxvt*bolditalicFont: xft:Terminus:pixelsize=12
+
+Xft.dpi: 96
 
 ! Colors (black, red, green, yellow, blue, purple, cyan, white)
 URxvt*dynamicColors: on

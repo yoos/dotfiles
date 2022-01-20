@@ -15,7 +15,7 @@ set shiftwidth=4    " Number of spaces inserted per indentation
 set softtabstop=4   " Spaces used for indentation behave like tab characters when tabbing and backspacing
 
 " Indentation rules according to Google's or GitHub's guidelines
-autocmd FileType c,cpp               setlocal   et ts=2 sw=2 sts=2
+autocmd FileType c,cpp               setlocal   et ts=4 sw=4 sts=4
 autocmd FileType python              setlocal   et ts=4 sw=4 sts=4
 autocmd FileType sh,lisp,html,css,javascript,perl,markdown,yaml,delphi,tex setlocal et ts=2 sw=2 sts=2
 
