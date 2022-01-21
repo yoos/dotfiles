@@ -13,10 +13,10 @@ URxvt*urgentOnBell: true
 ! Font (use xfontsel to ensure correct syntax)
 ! Disable antialiasing if using Xft font.
 URxvt*xftAntialias:   true
-URxvt*font:           xft:Inconsolata:size=12
-URxvt*boldFont:       xft:Inconsolata:size=12:bold
-URxvt*italicFont:     xft:Inconsolata:size=12:italic
-URxvt*bolditalicFont: xft:Inconsolata:size=12:bold:italic
+URxvt*font:           xft:Terminus:size=8
+URxvt*boldFont:       xft:Terminus:size=8:bold
+URxvt*italicFont:     xft:Terminus:size=8:italic
+URxvt*bolditalicFont: xft:Terminus:size=8:bold:italic
 
 Xft.dpi: 96
 

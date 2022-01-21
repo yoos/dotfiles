@@ -36,8 +36,8 @@ import System.Exit
 main :: IO ()
 main = do
     xmproc <- spawnPipe "xmobar"
-    xmonad $ docks defaultConfig   -- docks for upstream issue xmonad/xmonad#79
-        { terminal           = "urxvtc"
+    xmonad $ defaultConfig   -- docks for upstream issue xmonad/xmonad#79
+        { terminal           = "urxvt"
         , startupHook        = setWMName "LG3D"   -- Hack for Java
         , manageHook         = myManageHook
         , layoutHook         = myLayouts
@@ -62,7 +62,7 @@ myManageHook = (composeAll $ concat
     where
 
         myIgnores = ["desktop", "desktop_window"]
-        myFloats  = ["MPlayer", "VirtualBox", "Gimp", "rdesktop"]
+        myFloats  = ["MPlayer", "VirtualBox", "Gimp", "rdesktop", "Xilinx Unified 2019.2 Installer", "Microsoft Teams Notification"]
         myCFloats = ["Save As..."]
 
         myDoFullFloat :: ManageHook
@@ -139,6 +139,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Move window to workspace n with mod-alt-N
     [((modm .|. altMask, k), (windows $ W.shift i) >> (windows $ W.greedyView i) >> (windows $ W.swapDown))
     | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]]
+
+    ++
+    -- Enable/disable right monitor and restart synergy
+    [ ((altMask, xK_1), spawn "xrandr --output DVI-I-1 --off && systemctl --user restart synergyc")
+    , ((altMask, xK_2), spawn "xrandr --output DVI-I-1 --auto --left-of DP-3 && systemctl --user restart synergyc") ]
 
 -- Prompt --
 myXPConfig :: XPConfig

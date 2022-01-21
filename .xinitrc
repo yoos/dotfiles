@@ -14,6 +14,7 @@ feh --bg-fill "$(find ~/wallpapers/|shuf -n1)" &   # Set random wallpaper
 xmobar &
 xcompmgr &
 urxvtd &
+synergyc syoo-z400 &
 
 
 exec xmonad
