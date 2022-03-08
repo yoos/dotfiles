@@ -80,6 +80,7 @@ execute pathogen#infect()
 
 " Git and gitgutter
 let g:gitgutter_sign_column_always = 1
+let g:gitgutter_realtime = 1
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
 
