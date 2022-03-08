@@ -63,7 +63,9 @@ set hlsearch
 
 set updatetime=750
 set backup
-set backupdir=~/.vim/backup
+set backupdir=~/.vim/backup//
+set undodir=~/.vim/undo//
+set directory=~/.vim/swp//
 
 map ,c :w !pdflatex % &
 map ,b :w !bibtex % &
