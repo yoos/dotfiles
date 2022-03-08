@@ -80,8 +80,8 @@ execute pathogen#infect()
 
 " Git and gitgutter
 let g:gitgutter_sign_column_always = 1
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 
 " Syntastic settings.
 let g:syntastic_check_on_wq = 0   " Don't check syntax on write.
