@@ -1,37 +1,49 @@
-Config { font = "xft:proggy:size=7:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+Config { font = "xft:proggy:size=12:antialias=true" --"-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , bgColor = "black"
        , fgColor = "grey"
        , position = Top
        , lowerOnStart = True
-       , commands = [ Run Wireless "wlan0"    ["-t", "<essid> (<quality>%)"] 10
-                    , Run Network "wlan0"     ["-t", ": <rx> / <tx> KB/s",
+       , hideOnStart = False
+       , allDesktops = True
+       , overrideRedirect = True   -- Set false to make bar behave as docked app
+       , pickBroadest = False
+       , persistent = True
+       , commands = [ Run Wireless "wlan0"  ["-t", "<essid> (<quality>%)"] 10
+                    , Run Network  "wlan0"  ["-t", ": <rx> / <tx> KB/s",
                                              "-l", "green", "-n", "yellow", "-h", "#ff3333",
                                              "-L", "200000", "-H", "700000"] 10
-                    , Run Network "eth0"    ["-t", ": <rx> / <tx> KB/s",
+                    , Run Network  "eth0"   ["-t", "<dev>: <rx> / <tx> KB/s",
                                              "-l", "green", "-n", "yellow", "-h", "#ff3333",
                                              "-L", "200000", "-H", "700000"] 10
-                    , Run MultiCpu          ["-t", "Cpus (%): <total0> /<total1> /<total2> /<total3> /<total4> /<total5> /<total6> /<total7>",
+                    , Run MultiCpu          ["-t", "|<autovbar>| CPU: <total>%",
                                              "-L", "10",  "-H", "60",
-                                             "-l", "green", "-n", "yellow", "-h", "#ff3333", "-p", "3"] 5
+                                             "-l", "green", "-n", "yellow", "-h", "#ff3333"] 5
                     , Run Memory            ["-t", "Mem: <usedratio>%",
                                              "-L", "50",  "-H", "80",
-                                             "-l", "green", "-n", "yellow", "-h", "#ff3333"] 10
+                                             "-l", "green", "-n", "yellow", "-h", "#ff3333"] 5
                     , Run BatteryP          ["BAT0"]
                                             ["-t", "Batt: <left>% (AC <acstatus>)",
                                              "-L", "25", "-H", "75",
-                                             "-l", "#ff3333", "-n", "yellow", "-h", "green", "-p", "3",
-                                             "-f", "ADP1/online"] 10
+                                             "-l", "#ff3333", "-n", "yellow", "-h", "green",
+                                             "-f", "AC/online"] 10
                     , Run Uptime            [] 100
                     , Run Com "uname"       ["-s", "-r"] "" 36000
                     , Run StdinReader
-                    , Run Com "/home/syoo/bin/printvolume.sh"    [] "volume" 2
-                    , Run Com "/home/syoo/bin/printbacklight.sh" [] "backlight" 2
+                    , Run Volume "default" "Master" ["-t", "Vol: <volume>% <status>",
+                                                     "--",
+                                                     "-C", "white", "-c", "grey"] 2
+                    , Run Brightness        ["-t", "BL: <percent>%",
+                                             "--",
+                                             "-D", "intel_backlight"] 10
                     , Run Date "%a %b %_d %Y  %H:%M:%S" "date" 2
                     , Run Date "%s" "timeepoch" 2
+                    --, Run DateZone "%b %_d  %H:%M" "" "UTC" "dateutc" 2
+                    , Run Kbd [("us(colemak)", "kbd: <fc=#009999>colemak</fc>"),
+                               ("us",          "kbd: <fc=#ff3333>qwerty</fc>")]
                     ]
-       , sepChar = "%"
+       , sepChar = "~"
        , alignSep = "}{"
-       , template = "%uname%  -  %uptime%  -  %StdinReader% }{ %multicpu%  -  %memory%  -  %wlan0wi%%wlan0%%eth0%  -  %volume%  -  %backlight%  -  %battery%  -  <fc=#ffffff>%timeepoch%  /  %date%</fc>"
+       , template = "~uname~  -  ~uptime~  -  ~StdinReader~ }{ ~multicpu~ ~memory~  -  ~wlan0wi~~wlan0~~eth0~  -  ~default:Master~  -  ~bright~  -  ~kbd~  -  ~battery~  -  <fc=#ffffff>~timeepoch~  /  <action=`urxvt -e zsh -c 'cal -B1 -A1; zsh'`>~date~</action></fc>"
        }
 
 -- vim: ft=haskell

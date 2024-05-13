@@ -11,6 +11,7 @@ import XMonad.Hooks.EwmhDesktops  (fullscreenEventHook)
 
 import XMonad.Actions.CycleWS
 import XMonad.Actions.DwmPromote
+import XMonad.Actions.SwapWorkspaces
 
 import XMonad.Layout.NoBorders
 import XMonad.Layout.IM
@@ -36,7 +37,7 @@ import System.Exit
 main :: IO ()
 main = do
     xmproc <- spawnPipe "xmobar"
-    xmonad $ docks defaultConfig   -- docks for upstream issue xmonad/xmonad#79
+    xmonad $ docks $ defaultConfig   -- docks for upstream issue xmonad/xmonad#79
         { terminal           = "urxvt"
         , startupHook        = setWMName "LG3D"   -- Hack for Java
         , manageHook         = myManageHook
@@ -62,7 +63,7 @@ myManageHook = (composeAll $ concat
     where
 
         myIgnores = ["desktop", "desktop_window"]
-        myFloats  = ["MPlayer", "VirtualBox", "Gimp", "rdesktop"]
+        myFloats  = ["MPlayer", "VirtualBox", "Gimp", "rdesktop", "Xilinx Unified 2019.2 Installer", "Microsoft Teams Notification"]
         myCFloats = ["Save As..."]
 
         myDoFullFloat :: ManageHook
@@ -125,7 +126,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Volume
     [ ((0, 0x1008FF11), spawn "amixer -q -c 0 set Master 2-")
     , ((0, 0x1008FF12), spawn "amixer -q -c 0 set Master toggle")
-    , ((0, 0x1008FF13), spawn "amixer -q -c 0 set Master 2+") ]
+    , ((0, 0x1008FF13), spawn "amixer -q -c 0 set Master 2+")
+    , ((0, 0x1008FF03), spawn "xbacklight -dec 10")
+    , ((0, 0x1008FF02), spawn "xbacklight -inc 10") ]
 
     ++
     -- Switch to workspace N with mod-N
@@ -139,6 +142,17 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Move window to workspace n with mod-alt-N
     [((modm .|. altMask, k), (windows $ W.shift i) >> (windows $ W.greedyView i) >> (windows $ W.swapDown))
     | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]]
+
+    ++
+    -- Swap the current workspace into another
+    [((modm .|. controlMask, k), windows $ swapWithCurrent i) | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]]
+
+    ++
+    -- Enable/disable monitors
+    [ ((altMask, xK_1), spawn "xrandr --output eDP-1 --mode 2560x1600")
+    , ((altMask, xK_2), spawn "xrandr --output DP-2-1 --auto --above eDP-1")
+    , ((altMask, xK_3), spawn "xrandr --output DP-2-2 --auto --right-of DP-2-1")
+    , ((altMask, xK_0), spawn "xrandr --output DP-2-1 --off --output DP-2-2 --off") ]
 
 -- Prompt --
 myXPConfig :: XPConfig
