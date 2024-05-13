@@ -154,23 +154,27 @@ alias gco="git checkout"
 alias gsm="git submodule"
 
 # Aptitude
-alias sapt="sudo aptitude"
-alias sapts="sudo aptitude search"
-alias sapti="sudo aptitude install"
-alias saptu="sudo aptitude update"
-alias saptc="sudo aptitude clean"
-alias saptr="sudo aptitude remove"
-alias saptg="sudo aptitude upgrade"
+alias sa="sudo aptitude"
+alias as="aptitude search"
+alias sai="sudo aptitude install"
+alias sau="sudo aptitude update"
+alias sac="sudo aptitude clean"
+alias sar="sudo aptitude remove"
+alias sag="sudo aptitude upgrade"
 
 ################################ Environment ##################################
 export BROWSER="google-chrome"
 export EDITOR="vim"
 export GOPATH=/home/syoo/devel/go
-export MAKEFLAGS=-j10
+export MAKEFLAGS=-j24
 export PAGER='less'
-export SX_PATH=/sx/local/archon/load_builder/proxy_standard/bin
-export PATH=$SX_PATH:$GOPATH/bin:$HOME/bin:$PATH
+export PATH=$GOPATH/bin:$HOME/.local/bin:$HOME/bin:$PATH
 export TZ="America/Los_Angeles"
+export BR2_DL_DIR=/home/syoo/.cache/buildroot/dl
+
+. /tools/Xilinx/Vivado_Lab/2023.2/settings64.sh
+
+source ~/devel/kode/build/bazel-complete.bash
 
 # Autostart X server on tty1 login
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx
